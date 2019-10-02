@@ -51,11 +51,11 @@ CXX="g++"
 
 # flags for C++ compiler:
 ARCHFLAGS=""
-CFLAGS=" -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_THREAD_SAFE -D_REENTRANT"
-CXXFLAGS=" -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_THREAD_SAFE -D_REENTRANT"
-LDFLAGS=""
-LDLIBS="-lpthread  -framework Cocoa"
-OPTIM=" -Os -Wno-deprecated-declarations -Wall -Wunused -Wno-format-y2k  -fno-exceptions -fno-strict-aliasing"
+CFLAGS="  -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_THREAD_SAFE -D_REENTRANT"
+CXXFLAGS="-I/usr/include/freetype2 -I/usr/include/libpng16   -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_THREAD_SAFE -D_REENTRANT"
+LDFLAGS=" "
+LDLIBS="-lXext -lXft -lfontconfig -lXinerama -lpthread -ldl -lm  -lX11 "
+OPTIM=" -Os -Wall -Wunused -Wno-format-y2k  -fno-exceptions -fno-strict-aliasing"
 CAIROFLAGS=""
 
 # Check for local invocation, and update paths accordingly...
@@ -94,8 +94,8 @@ fi
 LIBNAME="../lib/libfltk.a"
 DSONAME=""
 DSOLINK=""
-IMAGELIBS="-lfltk_png -lz -lfltk_jpeg "
-STATICIMAGELIBS="$libdir/libfltk_png.a -lz $libdir/libfltk_jpeg.a "
+IMAGELIBS="-lpng -lz -ljpeg "
+STATICIMAGELIBS="-lpng -lz -ljpeg "
 CAIROLIBS=""
 SHAREDSUFFIX=""
 
@@ -247,8 +247,8 @@ if test x$use_forms = xyes; then
     LDSTATIC="$libdir/libfltk_forms.a $LDSTATIC"
 fi
 if test x$use_gl = xyes; then
-    LDLIBS="-lfltk_gl$SHAREDSUFFIX -framework AGL -framework OpenGL -framework ApplicationServices $LDLIBS"
-    LDSTATIC="$libdir/libfltk_gl.a -framework AGL -framework OpenGL -framework ApplicationServices $LDSTATIC"
+    LDLIBS="-lfltk_gl$SHAREDSUFFIX -lGLU -lGL $LDLIBS"
+    LDSTATIC="$libdir/libfltk_gl.a -lGLU -lGL $LDSTATIC"
 fi
 if test x$use_images = xyes; then
     LDLIBS="-lfltk_images$SHAREDSUFFIX $IMAGELIBS $LDLIBS"

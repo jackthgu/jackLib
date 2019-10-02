@@ -36,7 +36,7 @@ mandir		= ${datarootdir}/man
 srcdir		= .
 docdir		= $(datadir)/doc/fltk
 
-USEMMFILES  = Yes
+USEMMFILES  = No
 # programs we use...
 HTMLDOC		= 
 DOXYDOC		= 
@@ -58,9 +58,9 @@ RC		=
 
 # flags for C++ compiler:
 ARCHFLAGS	= 
-OPTIM		=  -Os -Wno-deprecated-declarations -Wall -Wunused -Wno-format-y2k  -fno-exceptions -fno-strict-aliasing
-CFLAGS		= $(OPTIM) -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_THREAD_SAFE -D_REENTRANT  
-CXXFLAGS	= $(OPTIM) -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_THREAD_SAFE -D_REENTRANT   $(FLTKFLAGS)
+OPTIM		=  -Os -Wall -Wunused -Wno-format-y2k  -fno-exceptions -fno-strict-aliasing
+CFLAGS		= $(OPTIM) -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_THREAD_SAFE -D_REENTRANT -I/usr/include/freetype2 -I/usr/include/libpng16   
+CXXFLAGS	= $(OPTIM) -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_THREAD_SAFE -D_REENTRANT -I/usr/include/freetype2 -I/usr/include/libpng16  -I/usr/include/freetype2 -I/usr/include/libpng16   $(FLTKFLAGS)
 
 # program to make the archive:
 LIBNAME		= ../lib/libfltk.a
@@ -85,13 +85,13 @@ IMGLIBBASENAME	= libfltk_images.a
 CAIROLIBBASENAME= libfltk_cairo.a
 
 # libraries to link with:
-AUDIOLIBS	= -framework CoreAudio
+AUDIOLIBS	= -lasound
 CAIROLIBS	= 
 CAIROFLAGS	= 
-DSOFLAGS	= -L. 
-LDFLAGS		= $(OPTIM) 
-LDLIBS		= -lpthread  -framework Cocoa
-GLDLIBS		= -framework AGL -framework OpenGL -framework ApplicationServices -lpthread  -framework Cocoa
+DSOFLAGS	= -L.  
+LDFLAGS		= $(OPTIM)  
+LDLIBS		= -lXext -lXft -lfontconfig -lXinerama -lpthread -ldl -lm  -lX11 
+GLDLIBS		= -lGLU -lGL -lXext -lXft -lfontconfig -lXinerama -lpthread -ldl -lm  -lX11 
 LINKFLTK	= ../lib/libfltk.a
 LINKFLTKGL	= ../lib/libfltk_gl.a
 LINKFLTKFORMS	= ../lib/libfltk_forms.a ../lib/libfltk.a
@@ -99,10 +99,10 @@ LINKFLTKIMG	= ../lib/libfltk_images.a ../lib/libfltk.a $(IMAGELIBS)
 LINKFLTKCAIRO	=  $(CAIROLIBS)
 FLTKCAIROOPTION = 
 LINKSHARED	=   ../lib/libfltk_images.a ../lib/libfltk_forms.a ../lib/libfltk.a $(IMAGELIBS) $(CAIROLIBS)
-IMAGELIBS	= -L../lib -lfltk_png -lz -lfltk_jpeg 
+IMAGELIBS	= -L../lib -lpng -lz -ljpeg 
 
 # image libraries to build...
-IMAGEDIRS	= jpeg  png
+IMAGEDIRS	=   
 CAIRODIR	= 
 # The extension to use for executables...
 EXEEXT		= 
@@ -117,12 +117,12 @@ THREADS		= threads
 FLUID		= fluid$(EXEEXT)
 
 # Possible steps for OS X build only
-OSX_ONLY	= 
+OSX_ONLY	= :
 
 # Man page extensions...
-CAT1EXT		= 0
-CAT3EXT		= 0
-CAT6EXT		= 0
+CAT1EXT		= 1
+CAT3EXT		= 3
+CAT6EXT		= 6
 
 #
 # Installation programs...
@@ -136,8 +136,8 @@ INSTALL_MAN	= $(INSTALL) -m 644
 INSTALL_SCRIPT	= $(INSTALL) -m 755
 
 # Additional GUI install/uninstall targets...
-INSTALL_DESKTOP	= install-osx
-UNINSTALL_DESKTOP = uninstall-osx
+INSTALL_DESKTOP	= install-linux
+UNINSTALL_DESKTOP = uninstall-linux
 
 # Be quiet when building...
 .SILENT:
@@ -151,11 +151,11 @@ UNINSTALL_DESKTOP = uninstall-osx
 
 .c.o:
 	echo Compiling $<...
-	$(CC) -I.. $(ARCHFLAGS) -I../png -I../jpeg  $(CFLAGS) -c $< -o $@
+	$(CC) -I.. $(ARCHFLAGS)    $(CFLAGS) -c $< -o $@
 
 .cxx.o:
 	echo Compiling $<...
-	$(CXX) -I.. $(ARCHFLAGS) -I../png -I../jpeg  $(CXXFLAGS) -c $< -o $@
+	$(CXX) -I.. $(ARCHFLAGS)    $(CXXFLAGS) -c $< -o $@
 	
 .mm.o:
 	echo Compiling $<...

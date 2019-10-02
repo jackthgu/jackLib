@@ -1,0 +1,6 @@
+[submodule "refParty/qu3e"]
+	path = refParty/qu3e
+	url = https://github.com/RandyGaul/qu3e.git
+[submodule "refParty/tinyply"]
+	path = refParty/tinyply
+	url = https://github.com/ddiakopoulos/tinyply.git

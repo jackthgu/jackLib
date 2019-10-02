@@ -74,7 +74,7 @@
  * Do you have the OpenGL glXGetProcAddressARB() function?
  */
 
-/* #undef HAVE_GLXGETPROCADDRESSARB */
+#define HAVE_GLXGETPROCADDRESSARB 1
 
 /*
  * USE_COLORMAP:
@@ -91,7 +91,7 @@
  * Do we have the Xinerama library to support multi-head displays?
  */
 
-#define HAVE_XINERAMA 0
+#define HAVE_XINERAMA 1
 
 /*
  * USE_XFT
@@ -99,7 +99,7 @@
  * Use the new Xft library to draw anti-aliased text.
  */
 
-#define USE_XFT 0
+#define USE_XFT 1
 
 /*
  * HAVE_XDBE:
@@ -107,7 +107,7 @@
  * Do we have the X double-buffer extension?
  */
 
-#define HAVE_XDBE 0
+#define HAVE_XDBE 1
 
 /*
  * USE_XDBE:
@@ -125,7 +125,7 @@
  * no meaning on operating systems other than Mac OS X.
  */
 
-#define __APPLE_QUARTZ__ 1
+/* #undef __APPLE_QUARTZ__ */
 
 
 /*
@@ -135,7 +135,7 @@
  *
  */
 
-/* #undef USE_X11 */
+#define USE_X11 1
 
 /*
  * HAVE_OVERLAY:
@@ -178,7 +178,7 @@
 
 #define U16 unsigned short
 #define U32 unsigned
-/* #undef U64 */
+#define U64 unsigned long
 
 /*
  * HAVE_DIRENT_H, HAVE_SYS_NDIR_H, HAVE_SYS_DIR_H, HAVE_NDIR_H,
@@ -192,7 +192,7 @@
 /* #undef HAVE_SYS_DIR_H */
 /* #undef HAVE_NDIR_H */
 #define HAVE_SCANDIR 1
-/* #undef HAVE_SCANDIR_POSIX */
+#define HAVE_SCANDIR_POSIX 1
 
 /*
  * Possibly missing sprintf-style functions:
@@ -207,8 +207,8 @@
 
 #define HAVE_STRINGS_H 1
 #define HAVE_STRCASECMP 1
-#define HAVE_STRLCAT 1
-#define HAVE_STRLCPY 1
+/* #undef HAVE_STRLCAT */
+/* #undef HAVE_STRLCPY */
 
 /*
  * Do we have POSIX locale support?
@@ -271,7 +271,7 @@
  */
 
 #define HAVE_PNG_H 1
-/* #undef HAVE_LIBPNG_PNG_H */
+#define HAVE_LIBPNG_PNG_H 1
 
 /*
  * Do we have the png_xyz() functions?
@@ -291,7 +291,7 @@
  * Do we have the ALSA library?
  */
 
-/* #undef HAVE_ALSA_ASOUNDLIB_H */
+#define HAVE_ALSA_ASOUNDLIB_H 1
 
 /*
  * Do we have the long long type?

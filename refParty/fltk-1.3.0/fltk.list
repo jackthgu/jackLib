@@ -49,9 +49,9 @@ $libdir=${exec_prefix}/lib
 $mandir=${datarootdir}/man
 $docdir=${datadir}/doc/fltk
 
-$CAT1EXT=0
-$CAT3EXT=0
-$CAT6EXT=0
+$CAT1EXT=1
+$CAT3EXT=3
+$CAT6EXT=6
 
 $DSONAME=
 $FLDSONAME=
@@ -59,8 +59,8 @@ $FLLIBNAME=../lib/libfltk_forms.a
 $GLDSONAME=
 $GLLIBNAME=../lib/libfltk_gl.a
 $FLUID=fluid
-$JPEG=jpeg
-$PNG=png
+$JPEG=
+$PNG=
 $ZLIB=
 
 %if DSONAME
