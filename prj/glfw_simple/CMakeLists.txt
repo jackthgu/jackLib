@@ -8,6 +8,7 @@ pkg_search_module(GLFW REQURED glfw3)
 message(${CMAKE_SOURCE_DIR})
 
 include_directories(
+	.
 	${CMAKE_SOURCE_DIR}/glad/build/include
 	${GLFW_INCLUDE_DIRS}
 	)
