@@ -6,7 +6,8 @@ find_package(OpenGL REQUIRED)
 pkg_search_module(GLFW REQURED glfw3)
 
 
-set(JACKLIB_DEP_DIR ${CMAKE_SOURCE_DIR}/../dep/)
+set(JACKLIB_DEP_DIR ${CMAKE_SOURCE_DIR}/../dep)
+set(JACKLIB_DEP_GUI_DIR ${CMAKE_SOURCE_DIR}/../dep/gui)
 
 message("hey")
 message(${JACKLIB_DEP_DIR})
@@ -32,10 +33,14 @@ set(LIBS ${LIBS}
 link_directories(
 	)
 
+
+add_subdirectory(${JACKLIB_DEP_GUI_DIR}/imgui)
+
 target_link_libraries(simple 
 	${OPENGL_LIBRARY}
 	${GLFW_LIBRARIES}
 	${LIBS}
+	imgui
 	)
 
 
